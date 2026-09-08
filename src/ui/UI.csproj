@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Declaw.UI</RootNamespace>
+    <AssemblyName>DeclawControl</AssemblyName>
+    <Platforms>x64</Platforms>
+
+    <!-- Self-contained: bundles the entire .NET runtime so zero dependencies -->
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <PublishTrimmed>true</PublishTrimmed>
+    <TrimMode>partial</TrimMode>
+  </PropertyGroup>
+
+  <!-- Share the DriverComm.cs source file from the service project -->
+  <ItemGroup>
+    <Compile Include="..\service\DriverComm.cs" Link="DriverComm.cs" />
+  </ItemGroup>
+
+</Project>

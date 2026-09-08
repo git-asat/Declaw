@@ -1,0 +1,96 @@
+;;;
+;;; Declaw Minifilter Driver INF File
+;;;
+
+[Version]
+Signature   = "$Windows NT$"
+Class       = "ActivityMonitor"
+ClassGuid   = {b4c3deadd-0856-4553-9029-7d0acad83044}
+Provider    = %ManufacturerName%
+DriverVer   = 09/08/2026,1.0.0.0
+CatalogFile = Declaw.cat
+PnpLockdown = 1
+
+[DestinationDirs]
+DefaultDestDir          = 12    ; %windir%\system32\drivers
+Declaw.DriverFiles    = 12    ; %windir%\system32\drivers
+
+;;
+;; Default install sections
+;;
+
+[DefaultInstall.NT$ARCH$]
+OptionDesc          = %ServiceDescription%
+CopyFiles           = Declaw.DriverFiles
+
+[DefaultInstall.NT$ARCH$.Services]
+AddService          = %ServiceName%,,Declaw.Service
+
+;;
+;; Default uninstall sections
+;;
+
+[DefaultUninstall.NT$ARCH$]
+LegacyUninstall = 1
+DelFiles        = Declaw.DriverFiles
+
+[DefaultUninstall.NT$ARCH$.Services]
+DelService      = %ServiceName%,0x200      ; Flags: SPSVCINST_STOPSERVICE
+
+;;
+;; Services Section
+;;
+
+[Declaw.Service]
+DisplayName      = %ServiceName%
+Description      = %ServiceDescription%
+ServiceBinary    = %12%\%DriverName%.sys        ; %windir%\system32\drivers\Declaw.sys
+Dependencies     = "FltMgr"
+ServiceType      = 2                            ; SERVICE_FILE_SYSTEM_DRIVER
+StartType        = 3                            ; SERVICE_DEMAND_START
+ErrorControl     = 1                            ; SERVICE_ERROR_NORMAL
+LoadOrderGroup   = "FSFilter Activity Monitor"
+AddReg           = Declaw.AddRegistry
+
+;;
+;; Registry Modifications
+;;
+
+[Declaw.AddRegistry]
+HKR,,"DebugFlags",0x00010001 ,0x0
+HKR,,"SupportedFeatures",0x00010001,0x3
+HKR,"Instances","DefaultInstance",0x00000000,%DefaultInstance%
+HKR,"Instances\"%Instance1.Name%,"Altitude",0x00000000,%Instance1.Altitude%
+HKR,"Instances\"%Instance1.Name%,"Flags",0x00010001,%Instance1.Flags%
+
+;;
+;; Copy Files
+;;
+
+[Declaw.DriverFiles]
+%DriverName%.sys
+
+[SourceDisksFiles]
+Declaw.sys = 1,,
+
+[SourceDisksNames]
+1 = %DiskId1%,,,
+
+;;
+;; String Definitions
+;;
+
+[Strings]
+ManufacturerName        = "Declaw Security"
+ServiceDescription      = "AI Agent File Access Shield Minifilter"
+ServiceName             = "Declaw"
+DriverName              = "Declaw"
+DiskId1                 = "Declaw Device Installation Disk"
+
+;;
+;; Instances specific information
+;;
+DefaultInstance         = "Declaw Instance"
+Instance1.Name          = "Declaw Instance"
+Instance1.Altitude      = "370030"
+Instance1.Flags         = 0x0              ; Allow automatic attachments
