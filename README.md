@@ -123,6 +123,32 @@ This will produce all standalone executables and package them alongside the driv
 
 ---
 
+## ⚠️ Disclaimer
+
+> [!CAUTION]
+> **IMPORTANT SECURITY & STABILITY NOTICE — PLEASE READ CAREFULLY**
+
+1. **Kernel-Mode Operations (Ring 0 Risk)**:
+   * Declaw contains a Windows File System Minifilter Driver (`Declaw.sys`) that runs at the highest privilege level in the operating system.
+   * Modifying kernel components carries inherent risk. An unhandled exception or faulty condition in kernel space can result in an immediate **BugCheck / Blue Screen of Death (BSOD)** and potential data loss.
+   * **Always test Declaw inside an isolated Virtual Machine (VM)** before considering any broader testing. Never test development kernel drivers on mission-critical or production hardware.
+
+2. **Educational & Security Research Purposes**:
+   * This project is provided strictly as a proof-of-concept for research, security evaluation, and educational exploration of process-aware kernel filesystem filtering.
+   * The authors and maintainers do not encourage or endorse testing on systems containing unbacked-up sensitive data.
+
+3. **No Warranty & Limitation of Liability**:
+   * This software is provided *"as is"*, without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and noninfringement.
+   * In no event shall the authors, contributors, or copyright holders be liable for any claim, damages (including, without limitation, direct, indirect, incidental, special, or consequential damages), data loss, or system interruption arising from the use, misuse, or inability to use this software.
+
+4. **Third-Party Trademarks**:
+   * Any company, product, or service names mentioned (including Windows, Microsoft, Claude, Cursor, Windsurf, GitHub Copilot, Antigravity, Aider, Cline) are trademarks or registered trademarks of their respective owners. Mention of these names is purely for compatibility context and does not imply any affiliation, sponsorship, or endorsement.
+
+---
+
 ## 📄 License
 
-This project is released under the MIT License for educational and research purposes.
+Declaw is licensed under the **[MIT License](LICENSE)**.
+
+You are free to use, study, modify, and distribute this software, subject to the terms and conditions outlined in the [LICENSE](LICENSE) file.
+

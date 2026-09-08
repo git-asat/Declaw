@@ -78,6 +78,8 @@ copy /y src\driver\Declaw.vcxproj "%OUTPUT_DIR%\driver\" >nul
 copy /y src\driver\README.md       "%OUTPUT_DIR%\driver\" >nul
 copy /y src\service\appsettings.json "%OUTPUT_DIR%\" >nul
 copy /y README.md                  "%OUTPUT_DIR%\" >nul
+copy /y LICENSE                    "%OUTPUT_DIR%\" >nul
+
 
 echo.
 echo ================================================

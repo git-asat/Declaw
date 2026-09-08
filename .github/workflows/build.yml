@@ -52,6 +52,8 @@ jobs:
         Copy-Item src\driver\README.md       publish\driver\
         Copy-Item src\service\appsettings.json publish\
         Copy-Item README.md                  publish\
+        Copy-Item LICENSE                    publish\
+
 
     - name: Create release archive
       run: |
